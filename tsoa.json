@@ -1,0 +1,12 @@
+{
+  "swagger": {
+
+  },
+  "routes": {
+    "entryFile": "./src/controllers/index.ts",
+    "routesDir": "./build",
+    "basePath": "/",
+    "authenticationModule": "./src/auth.ts",
+    "middleware": "express"
+  }
+}
