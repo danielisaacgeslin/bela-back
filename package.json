@@ -12,7 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
+    "inversify": "^4.10.0",
+    "inversify-binding-decorators": "^3.2.0",
     "nodemon": "^1.15.0",
+    "reflect-metadata": "^0.1.12",
     "ts-node": "^4.1.0",
     "ts-node-dev": "^1.0.0-pre.15",
     "tsoa": "^2.1.1",

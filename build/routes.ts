@@ -1,15 +1,18 @@
 /* tslint:disable */
 import { Controller, ValidateParam, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
+import { iocContainer } from './../src/ioc';
 import { CurrencyController } from './../src/controllers/CurrencyController';
 import { PingController } from './../src/controllers/PingController';
 import { expressAuthentication } from './../src/auth';
 
 const models: TsoaRoute.Models = {
+    "Rates": {
+    },
     "ExchangeModel": {
         "properties": {
             "base": { "dataType": "string", "default": "" },
             "date": { "dataType": "string", "default": "" },
-            "rates": { "dataType": "any", "default": {} },
+            "rates": { "ref": "Rates", "default": {} },
             "args": { "ref": "ExchangeModel", "required": true },
         },
     },
@@ -31,7 +34,7 @@ export function RegisterRoutes(app: any) {
                 return next(err);
             }
 
-            const controller = new CurrencyController();
+            const controller = iocContainer.get<CurrencyController>(CurrencyController);
 
 
             const promise = controller.exchange.apply(controller, validatedArgs);
@@ -49,7 +52,7 @@ export function RegisterRoutes(app: any) {
                 return next(err);
             }
 
-            const controller = new PingController();
+            const controller = iocContainer.get<PingController>(PingController);
 
 
             const promise = controller.ping.apply(controller, validatedArgs);
