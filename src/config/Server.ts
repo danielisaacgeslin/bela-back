@@ -1,6 +1,8 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as errorHandler from 'api-error-handler';
+import * as winston from 'winston';
+import * as expressWinston from 'express-winston';
 
 import { RegisterRoutes } from '../../build/routes';
 import '../controllers';
@@ -14,11 +16,13 @@ export class Server {
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
     this.app.use(errorHandler());
+
+    this.app.use(expressWinston.logger({ transports: [new winston.transports.Console({ colorize: true })] }));
     RegisterRoutes(this.app);
   }
 
   public listen(port: number = this.port): void {
-    this.app.listen(3000);
+    this.app.listen(this.port);
   }
 
   private allowCors (req: express.Request, res: express.Response, next: express.NextFunction): void {
