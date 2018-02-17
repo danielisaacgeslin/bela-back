@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import * as errorHandler from "api-error-handler";
+import * as errorHandler from 'api-error-handler';
 
 import { RegisterRoutes } from '../../build/routes';
 import '../controllers';
@@ -22,8 +22,8 @@ export class Server {
   }
 
   private allowCors (req: express.Request, res: express.Response, next: express.NextFunction): void {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     next();
   }
 

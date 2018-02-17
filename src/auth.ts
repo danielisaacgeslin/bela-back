@@ -3,7 +3,7 @@ import { Request } from 'express';
 export type res = { status: number; message: string };
 
 export function expressAuthentication(request: Request, securityName: string, scopes?: string[]): Promise<res> {
-  const jwt: string = request.query.jwt;
+  const jwt: string = <string>request.headers.authorization;
   const rejection: Promise<res> = Promise.reject({ status: 403, message: 'nop...' });
   switch (securityName) {
     case 'baseUser':
