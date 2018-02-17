@@ -1,6 +1,6 @@
 import { ProvideSingleton } from '../ioc';
 import { Rates } from '../models';
-import { currencyCodes } from '../constants';
+import { currencyCodes } from '../config/constants';
 
 const createFakeRate = () => Number((Math.random() * 100).toFixed(4));
 

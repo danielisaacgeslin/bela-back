@@ -8,13 +8,13 @@ import { GetExchangeUseCase } from '../usecases';
 @ProvideSingleton(CurrencyController)
 export class CurrencyController extends Controller {
 
-  constructor(@inject(GetExchangeUseCase) private getExchangeUseCase: GetExchangeUseCase) {
+  constructor( @inject(GetExchangeUseCase) private getExchangeUseCase: GetExchangeUseCase) {
     super();
   }
 
   @Get()
   @Security('baseUser')
-  public async exchange(@Query('base') base: string, @Query('symbols') symbols?: string): Promise<ExchangeModel> {
+  public async exchange( @Query('base') base: string, @Query('symbols') symbols?: string): Promise<ExchangeModel> {
     return this.getExchangeUseCase.exchange(base, symbols);
   }
 }

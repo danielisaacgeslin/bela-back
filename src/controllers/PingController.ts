@@ -7,7 +7,7 @@ import { ProvideSingleton } from '../ioc';
 @ProvideSingleton(PingController)
 export class PingController extends Controller {
   @Get()
-  public async ping (): Promise<string> {
+  public async ping(): Promise<string> {
     return 'pong';
   }
 }

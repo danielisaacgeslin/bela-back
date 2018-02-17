@@ -1,13 +1,5 @@
-import * as express from 'express';
-import * as bodyParser from 'body-parser';
-import { RegisterRoutes } from '../build/routes';
+import { Server } from './config/Server';
 
-import './controllers';
+const server: Server = new Server();
 
-const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-RegisterRoutes(app);
-
-app.listen(3000);
+server.listen();

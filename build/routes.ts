@@ -2,6 +2,7 @@
 import { Controller, ValidateParam, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
 import { iocContainer } from './../src/ioc';
 import { CurrencyController } from './../src/controllers/CurrencyController';
+import { LoginController } from './../src/controllers/LoginController';
 import { PingController } from './../src/controllers/PingController';
 import { expressAuthentication } from './../src/auth';
 
@@ -35,6 +36,25 @@ export function RegisterRoutes(app: any) {
             }
 
             const controller = iocContainer.get<CurrencyController>(CurrencyController);
+
+
+            const promise = controller.exchange.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.post('/login',
+        function(request: any, response: any, next: any) {
+            const args = {
+                body: { "in": "body", "name": "body", "required": true, "dataType": "any" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = iocContainer.get<LoginController>(LoginController);
 
 
             const promise = controller.exchange.apply(controller, validatedArgs);
