@@ -18,6 +18,5 @@ describe('CurrenciesRepository', () => {
   it('should getRates', async () => {
     const rates = await currenciesRepository.getRates('EUR', ['USD']);
     expect(rates.USD).to.be.a('number');
-    return Promise.resolve();
   });
 });
