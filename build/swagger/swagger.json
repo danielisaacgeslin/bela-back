@@ -1,0 +1,128 @@
+{
+	"basePath": "",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"Rates": {
+			"properties": {},
+			"type": "object"
+		},
+		"ExchangeModel": {
+			"properties": {
+				"base": {
+					"type": "string",
+					"default": ""
+				},
+				"date": {
+					"type": "string",
+					"default": ""
+				},
+				"rates": {
+					"$ref": "#/definitions/Rates"
+				},
+				"args": {
+					"$ref": "#/definitions/ExchangeModel"
+				}
+			},
+			"required": [
+				"args"
+			],
+			"type": "object"
+		}
+	},
+	"info": {
+		"title": "bela-back",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		}
+	},
+	"paths": {
+		"/currency": {
+			"get": {
+				"operationId": "Exchange",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/ExchangeModel"
+						}
+					}
+				},
+				"security": [
+					{
+						"baseUser": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "base",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "query",
+						"name": "symbols",
+						"required": false,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/login": {
+			"post": {
+				"operationId": "Exchange",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"type": "object"
+						}
+					}
+				]
+			}
+		},
+		"/ping": {
+			"get": {
+				"operationId": "Ping",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "string"
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {}
+}

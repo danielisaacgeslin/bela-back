@@ -6,13 +6,13 @@
   "scripts": {
     "test": "mocha -r ts-node/register ./src/tests/**/*.spec.ts",
     "start": "yarn start:dev",
-    "start:dev": "yarn build:routes && ts-node-dev --respawn ./src",
-    "build:routes": "tsoa routes"
+    "start:dev": "yarn build:routes && yarn build:swagger && ts-node-dev --respawn ./src",
+    "build:routes": "tsoa routes",
+    "build:swagger": "tsoa swagger"
   },
   "author": "dgeslin",
   "license": "ISC",
   "dependencies": {
-    "api-error-handler": "^1.0.0",
     "express": "^4.16.2",
     "express-winston": "^2.5.0",
     "inversify": "^4.10.0",
